@@ -91,7 +91,22 @@ class Game():
                     cpu.draw_ship(position, direction, ship)
 
     def make_move_cpu(self, cpu, opponent):
-        None #Work in progress
+        if cpu.board_obj.hitted_not_sunk:
+            coor = cpu.board_obj.hitted_not_sunk
+            if len(coor) == 1:
+                possibilities = [(coor[0][0] - 1, coor[0][0]), (coor[0][0] + 1, coor[0][0]), (coor[0][0], coor[0][0] - 1),
+                (coor[0][0], coor[0][0] + 1)]
+        else:
+            succesful = False
+            while not succesful:
+                coordinate = (random.randint(0, 9), random.randint(0, 9)) #Already converted position.
+                if check_if_first_time(coordinate, opponent):
+                    succesful = True
+            test1 = opponent.check_if_hit(coordinate)
+            test2 = opponent.check_if_sunk()
+            if test1 and not test2:
+                cpu.board_obj.hitted_not_sunk.append(coordinate)
+                #Work further...
 
 
 def check_if_possible(player, position, direction, ship):
