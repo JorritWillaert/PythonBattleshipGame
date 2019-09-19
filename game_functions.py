@@ -1,6 +1,7 @@
-import os
 import time
 import random
+
+import helper
 
 class Game():
     def __init__(self, player1, player2):
@@ -9,14 +10,14 @@ class Game():
 
     def starting_up(self, own, opponent):
         """Initialize own board."""
-        os.system('cls')
+        helper.clear()
         ship_list = [("Destroyer", 2), ("Submarine", 3), ("Cruiser", 3), ('Battleship', 4), ('Carrier', 5)]
 
         input(own.name + ", press Enter if you're ready. ")
         for ship in reversed(ship_list):
             succesful = False
             while not succesful:
-                os.system('cls')
+                helper.clear()
                 own.draw_boards(own, opponent)
                 position = insert_position(own, ship, starting = True)
                 direction = insert_direction()
@@ -27,14 +28,14 @@ class Game():
                 else:
                     print("\nIt's not possible to place a ship here. Please chose an other location.\n")
                     time.sleep(2)
-        os.system('cls')
+        helper.clear()
         own.draw_boards(own, opponent)
         time.sleep(1)
 
     def make_move(self, own, opponent):
         succesful = False
         while not succesful:
-            os.system('cls') #Best to comment this line for testing
+            helper.clear() #Best to comment this line for testing
             own.draw_boards(own, opponent)
             position = insert_position(own, ship = None, starting = False)
             coordinate = convert_position(position)
@@ -44,7 +45,7 @@ class Game():
                 print('Please enter a non-chosen position.')
                 time.sleep(1)
 
-        os.system('cls') #Best to comment this line for testing
+        helper.clear() #Best to comment this line for testing
         if opponent.check_if_hit(coordinate):
             print('Hit!')
         else:
@@ -57,7 +58,7 @@ class Game():
         time.sleep(1)
 
     def victory(self, own):
-        os.system('cls')
+        helper.clear()
         if own.name != 'CPU':
             print("Congratulations " + own.name + ", you've won.")
         else:
