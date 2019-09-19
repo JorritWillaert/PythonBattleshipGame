@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# coding: utf8
+
 import game_functions as gf
 from game_functions import Game
 from player import Player
@@ -73,6 +76,7 @@ def run_switch(player1, player2, game):
                 main()
             else:
                 sys.exit()
+
 
 if __name__ == '__main__':
     main()
