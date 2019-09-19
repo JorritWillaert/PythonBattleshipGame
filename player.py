@@ -6,9 +6,10 @@ import time
 import collections
 
 class Player():
-    def __init__(self, name):
+    def __init__(self, name, iscpu=False):
         self.warships = []
         self.name = name
+        self.isCPU = iscpu
         self.board_obj = Board()
 
     def draw_ship(self, position, direction, ship):

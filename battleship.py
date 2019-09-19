@@ -37,7 +37,7 @@ def main():
 
     elif option == '2':
         player1 = Player(input("Player 1, enter your name please: "))
-        cpu = Player("CPU")
+        cpu = Player("CPU", iscpu=True)
 
         game = Game(player1, cpu)
         game.starting_up(player1, cpu)
@@ -65,7 +65,7 @@ def run_switch(player1, player2, game):
             own = player2
             opponent = player1
         switch = not switch
-        if player2.name != 'CPU':
+        if not player2.isCPU:
             game.make_move(own, opponent)
             if opponent.warships:
                 input("Switch players please! ")
