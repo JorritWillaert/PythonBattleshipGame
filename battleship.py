@@ -7,6 +7,7 @@ from player import Player
 
 import pickle #For saving objects.
 import sys
+from itertools import permutations
 
 from colorama import init
 
@@ -56,27 +57,20 @@ def main():
         run_switch(game.player1, game.player2, game)
 
 def run_switch(player1, player2, game):
-    switch = True
+    players = (player1, player2)
     while True:
-        if switch:
-            own = player1
-            opponent = player2
-        else:
-            own = player2
-            opponent = player1
-        switch = not switch
-        if not player2.isCPU:
-            game.make_move(own, opponent)
-            if opponent.warships:
-                input("Switch players please! ")
-        else:
-            game.make_move_cpu(own, opponent)
-        if not opponent.warships:
-            if game.victory(own):
-                main()
+        for own, opponent in permutations(players):
+            if not player2.isCPU:
+                game.make_move(own, opponent)
+                if opponent.warships:
+                    input("Switch players please! ")
             else:
-                sys.exit()
-
+                game.make_move_cpu(own, opponent)
+            if not opponent.warships:
+                if game.victory(own):
+                    main()
+                else:
+                    sys.exit()
 
 if __name__ == '__main__':
     main()
