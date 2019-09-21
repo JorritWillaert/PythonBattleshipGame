@@ -118,7 +118,7 @@ def insert_position(player, ship, starting):
     """Insert a valid position (e.g. B2)."""
     while True:
         if starting:
-            position = input(player.name +  ", where do you want to place your " + ship[0] + "(" + str(ship[1]) + ")? ")
+            position = input(player.name +  ", where do you want to place your " + ship[0] + "(" + str(ship[1]) + ")? ").upper()
         else:
             position = input(player.name +  ", where do you want to shoot? ")
         try:
@@ -132,7 +132,7 @@ def insert_position(player, ship, starting):
 def insert_direction():
     """Insert a valid direction."""
     while True:
-        direction = input("Do you want to place it horizontal or vertical? (h, v) ")
+        direction = input("Do you want to place it horizontal or vertical? (h, v) ").lower()
         try:
             if direction in ['h', 'v']:
                 return direction
