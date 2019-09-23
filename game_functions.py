@@ -64,7 +64,7 @@ class Game():
         else:
             print('Unfortunately, but the computer did beat you...')
         while True:
-            new_game = input("Do you want to play a new game? (y, n) ")
+            new_game = input("Do you want to play a new game? (y, n) ").lower()
             if new_game == 'y':
                 return True
             elif new_game == 'n':
@@ -120,7 +120,7 @@ def insert_position(player, ship, starting):
         if starting:
             position = input(player.name +  ", where do you want to place your " + ship[0] + "(" + str(ship[1]) + ")? ").upper()
         else:
-            position = input(player.name +  ", where do you want to shoot? ")
+            position = input(player.name +  ", where do you want to shoot? ").upper()
         try:
             if (position[0] in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']) and (int(position[1:]) in range(1, 11)):
                 return position
